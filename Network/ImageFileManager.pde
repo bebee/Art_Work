@@ -22,7 +22,7 @@ int imgSize;
      input[x] = 0.0; //Just adding a white color to the input and expecting the mona lisa as output, the input data issomething that can be use to experiment
    }
    }
- }
+ 
   
     float[] getOutput(){//returns the expected output for the net
     return output;

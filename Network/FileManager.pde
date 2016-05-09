@@ -1,8 +1,8 @@
 import java.util.Scanner;
 import java.io.File;
 Scanner reader;
-ArrayList<Float[]> input = new ArrayList<Float[]>(); //stores the input that the network would recieve
-ArrayList<Float[]> output = new ArrayList<Float[]>(); //stores  the expectedoutput of the network for training
+ArrayList<Float> input = new ArrayList<Float>(); //stores the input that the network would recieve
+ArrayList<Float> output = new ArrayList<Float>(); //stores  the expectedoutput of the network for training
 String filePath;
 PImage trainingImage;
 public class FileManager{
@@ -10,10 +10,7 @@ public class FileManager{
    FileManager(String path, String type){ //sets the path to the training data file
    filePath = path;
    if(type.equals("text")) ;//setTrainingData(path); //runs the method that loads the data into the sketch to train the network
-   else if(type.equals("image")) {
-     trainingImage = loadImage(path);
-     setImageTrainingData();//set the parameter to be the image in the filepath using PImage
-   }else if(""){
+   else if(type.equals("")){
     //do nothing, this option is used to save weights but not to use datasets 
    }
      

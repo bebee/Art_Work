@@ -1,24 +1,26 @@
 
 /* Current Status
     This network is going to be used to create art by being trained on specific peices of art
-
+  
 */
 
 
 /*  Current Problems
-   Clean code in General
-   Make robot class that will recieve sensor data and control the robot using the network
+   Clean code File Manager classs and move the saveweights() and loadWeights() methods to the network class
+   Make the sizeof the network dependent on some setting rather than hardcoding the size and length into the array in the nettwork class
+   
+   
    Look into confidence intervals to prove that the network is learning
    Make the filemanager arraylist two dimensional to hold multiple neuron's traing data; currently it only pairs one input value with another output value
    Have a way of graphing the samples to see what function the net is learning 
-   Have code to convert the samples into coordinate pairs to make graphs in excel
  */
  
 
 import java.io.FileReader;
 Network network; 
 FileManager dataMger;
- String trainingpath = "C://Users//franco//Documents//github//Art_Work//Images//monalisa.jpe";
+ImageFileManager imageMger;
+ String trainingPath = "C://Users//franco//Documents//github//Art_Work//Images//monalisa.jpe";
 void settings(){//settings() is needed toset size()in processing 3.0+
   size(640,480);
 }
@@ -43,9 +45,9 @@ void startNetwork(){
 
   void draw() {
    background(153);
-   network.setInputVal(imageMger.getImageInput(0));//parameter is zero because only one data set has been loaded
+   network.setInputVal(imageMger.getInput());//parameter is zero because only one data set has been loaded
    network.feedForward();  
-   network.backProp(imageMger.getImageOutput(0));//parameter is zero because only one data set has been loaded
+   network.backProp(imageMger.getOutput());//parameter is zero because only one data set has been loaded
    //dataMger.saveWeights("C://Users//franco//Documents//github//NeuralNetwork//Processing//Network//SavedWeights.txt");//saves the networks weights
    println("done");
    exit();
