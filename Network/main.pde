@@ -28,27 +28,26 @@ void settings(){//settings() is needed toset size()in processing 3.0+
 }
 
 void startNetwork(){
-    dataMger = new FileManager(trainingPath, "image"); //loads training data into the sketch
+    dataMger = new FileManager(trainingPath, ""); //loads training data into the sketch
+    imageMger = new ImageFileManager(trainingPath);
     network = new Network(); // sets a new network object 
     network.setStochastic(false); //set to either true or false to have stochastic gradient descent be a feature or disable by setting it to false;
    
     network.setBatchSize(1);
     network.startUp(); // starts the network and sets random bias values
     network.setLearningRate(.9);//sets the learnign rate for the network default is .01
-    if(new File("C://Users//franco//Documents//github//NeuralNetwork//Processing//Network//SavedWeights.txt").exists()) dataMger.loadWeights("C://Users//franco//Documents//github//NeuralNetwork//Processing//Network//SavedWeights.txt");
+    //if(new File("C://Users//franco//Documents//github//NeuralNetwork//Processing//Network//SavedWeights.txt").exists()) dataMger.loadWeights("C://Users//franco//Documents//github//NeuralNetwork//Processing//Network//SavedWeights.txt");
     noLoop();//stops the main from looping 
    
 }
 
   void draw() {
    background(153);
-   network.setInputVal(dataMger.getImageInput(0));//parameter is zero because only one data set has been loaded
+   network.setInputVal(imageMger.getImageInput(0));//parameter is zero because only one data set has been loaded
    network.feedForward();  
-   network.backProp(dataMger.getImageOutput(0));//parameter is zero because only one data set has been loaded
-   println("Done with " + dataMger.getTrainingDataPath());
-   }
-   dataMger.saveWeights("C://Users//franco//Documents//github//NeuralNetwork//Processing//Network//SavedWeights.txt");//saves the networks weights
-   println("Saved the Net's Weights");
+   network.backProp(imageMger.getImageOutput(0));//parameter is zero because only one data set has been loaded
+   //dataMger.saveWeights("C://Users//franco//Documents//github//NeuralNetwork//Processing//Network//SavedWeights.txt");//saves the networks weights
+   println("done");
    exit();
 }
 

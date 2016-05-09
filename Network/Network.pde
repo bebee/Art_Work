@@ -1,5 +1,5 @@
   //static int layers = 2;
-static int [] layerLength = {1, 25, 1};
+static int [] layerLength = {65536, 1, 65536};
 static ArrayList<ArrayList<Neuron>> net = new ArrayList <ArrayList <Neuron>>();
 static float learningRate = 1; //The learning rate for the network
 float batchSize = 10; //size of training Batches

@@ -13,6 +13,8 @@ public class FileManager{
    else if(type.equals("image")) {
      trainingImage = loadImage(path);
      setImageTrainingData();//set the parameter to be the image in the filepath using PImage
+   }else if(""){
+    //do nothing, this option is used to save weights but not to use datasets 
    }
      
    }
@@ -35,18 +37,7 @@ public class FileManager{
  }
  */
  
- void setImageTrainingData(){ //used to load images as training data
-   trainingImage.loadPixels();
-   int size = trainingImage.width*trainingImage.height;
-   input.add(new Float[size]);
-   output.add(new Float[size]);
-   for(int a = 0; a < output.size(); a++){//loops through different data sets if necessary
-   for(int x = 0; x < size; x++){ // loops through all the pixels and reduces the color resolution to use lessprocessing power to run the net
-     output.get(a)[x] = trainingImage.pixels[x];
-     input.get(a)[x] = 0.0; //Just adding a white color to the input and expecting the mona lisa as output, the input data issomething that can be use to experiment
-   }
-   }
- }
+
    
   
   float [] getInput(int i){
@@ -59,16 +50,7 @@ public class FileManager{
     return tmp;
   }
   
-  float getImageOutput(int i){
-    return output.get(i);
-  }
-  
-  PImage getTrainingImage(int i){
-    return input.get(i);
-  }
-  float getImageInput(int i){//needs to be worked on here as a placeholder right now
-   return 0.0; 
-  }
+
   
   int getTrainingDataSize(){ //returns the amount of sets of training data there is to use
    return input.size(); 
