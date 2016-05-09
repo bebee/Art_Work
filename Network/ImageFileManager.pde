@@ -31,4 +31,15 @@ int imgSize;
    return input; 
   }
   
+  void saveFinalImage(String path){//saves the final output of the net as an image
+   PImage img = createImage(256,256,ARGB);
+   img.loadPixels();
+   for(int x = 0; x < network.getSize(network.getSize()-1);x++){
+    // img.pixels[x] = (int)output[x];
+   img.pixels[x] = (int)network.getOutputVal()[x];
+   }
+   img.updatePixels();
+   img.save("monalisa's_sister.png");
+  }
+  
 }

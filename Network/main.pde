@@ -20,7 +20,7 @@ import java.io.FileReader;
 Network network; 
 FileManager dataMger;
 ImageFileManager imageMger;
- String trainingPath = "C://Users//franco//Documents//github//Art_Work//Images//monalisa.jpe";
+ String trainingPath = "C://Users//franco//Documents//github//Art_Work//Network//Images//monalisa.png";
 void settings(){//settings() is needed toset size()in processing 3.0+
   size(640,480);
 }
@@ -45,10 +45,17 @@ void startNetwork(){
 
   void draw() {
    background(153);
-   network.setInputVal(imageMger.getInput());//parameter is zero because only one data set has been loaded
-   network.feedForward();  
-   network.backProp(imageMger.getOutput());//parameter is zero because only one data set has been loaded
+  int limit = 2;
+  int counter = 0;
+   
+   //while(counter < limit){
+   //network.setInputVal(imageMger.getInput());//parameter is zero because only one data set has been loaded
+  // network.feedForward();  
+   //network.backProp(imageMger.getOutput());//parameter is zero because only one data set has been loaded
+   //counter++;  
+ //}
    //dataMger.saveWeights("C://Users//franco//Documents//github//NeuralNetwork//Processing//Network//SavedWeights.txt");//saves the networks weights
+  imageMger.saveFinalImage("path");//path does not currently do anything
    println("done");
    exit();
 }
