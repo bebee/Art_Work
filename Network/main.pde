@@ -22,14 +22,16 @@ FileManager dataMger;
 ImageFileManager imageMger;
  String trainingPath = "C://Users//franco//Documents//github//Art_Work//Network//Images//monalisa.png";
 void settings(){//settings() is needed toset size()in processing 3.0+
-  size(640,480);
+  size(120,120);
 }
   void setup() {
+    
   startNetwork(); //setups everything needed to use a neural net
  
 }
 
 void startNetwork(){
+  println("Starting Network");
     dataMger = new FileManager(trainingPath, ""); //loads training data into the sketch
     imageMger = new ImageFileManager(trainingPath);
     network = new Network(); // sets a new network object 
@@ -39,21 +41,27 @@ void startNetwork(){
     network.startUp(); // starts the network and sets random bias values
     network.setLearningRate(.9);//sets the learnign rate for the network default is .01
     //if(new File("C://Users//franco//Documents//github//NeuralNetwork//Processing//Network//SavedWeights.txt").exists()) dataMger.loadWeights("C://Users//franco//Documents//github//NeuralNetwork//Processing//Network//SavedWeights.txt");
-    noLoop();//stops the main from looping 
-   
+   // noLoop();//stops the main from looping 
+   println("Done Starting Network");
 }
-
+byte counter = 0;
+byte limit = 50;
   void draw() {
-   background(153);
-  int limit = 2;
-  int counter = 0;
+
+   if(counter == limit) closeAndExit();
+   println(counter);
+       
+   network.setInputVal(imageMger.getInput());//parameter is zero because only one data set has been loaded
+   network.feedForward();  
+   network.backProp(imageMger.getOutput());//parameter is zero because only one data set has been loaded
+   counter++; 
    
-   //while(counter < limit){
-   //network.setInputVal(imageMger.getInput());//parameter is zero because only one data set has been loaded
-  // network.feedForward();  
-   //network.backProp(imageMger.getOutput());//parameter is zero because only one data set has been loaded
-   //counter++;  
- //}
+ 
+  }
+  
+  
+  void closeAndExit(){
+
    //dataMger.saveWeights("C://Users//franco//Documents//github//NeuralNetwork//Processing//Network//SavedWeights.txt");//saves the networks weights
   imageMger.saveFinalImage("path");//path does not currently do anything
    println("done");

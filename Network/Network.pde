@@ -1,5 +1,5 @@
   //static int layers = 2;
-static int [] layerLength = {10000, 10000, 10000};
+static int [] layerLength = {512, 10000, 512};
 static ArrayList<ArrayList<Neuron>> net = new ArrayList <ArrayList <Neuron>>();
 static float learningRate = 1; //The learning rate for the network
 float batchSize = 10; //size of training Batches
@@ -94,21 +94,16 @@ void setBatchSize(float i) {
   batchSize = i;
 }
 void setInputVal(float [] f) {//sets the input values for the first layer of the neural network
-  if (f.length != this.getSize(0)) println("Input data too large for number of Neurons"); 
-  else {
+  
     for (int i = 0; i < net.get(0).size(); i++) { 
       net.get(0).get(i).setCurrentVal(f[i]);
     }
-  }
 }
 
 void setInputVal(Float [] f) {//sets the input values for the first layer of the neural network using an object Float array
-  if (f.length != this.getSize(0)) println("Input data too large for number of Neurons"); 
-  else {
     for (int i = 0; i < net.get(0).size(); i++) { 
       net.get(0).get(i).setCurrentVal(f[i].floatValue());
     }
-  }
 }
 
 void setInputVal(int i , float val){//used to load data to each neuron seperately
